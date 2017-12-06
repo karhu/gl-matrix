@@ -26,14 +26,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 // END HEADER
 
-import * as glMatrix from "./gl-matrix/common";
-export { glMatrix }
+import * as glMatrix from "./common";
+export { glMatrix };
 
-export { mat2, imMat2} from "./gl-matrix/mat2";
-export { mat2d, imMat2d} from "./gl-matrix/mat2d";
-export { mat3, imMat3} from "./gl-matrix/mat3";
-export { mat4, imMat4} from "./gl-matrix/mat4";
-export { quat, imQuat} from "./gl-matrix/quat";
-export { vec2, imVec2} from "./gl-matrix/vec2";
-export { vec3, imVec3} from "./gl-matrix/vec3";
-export { vec4, imVec4} from "./gl-matrix/vec4";
+export { mat2, imMat2} from "./mat2";
+export { mat2d, imMat2d} from "./mat2d";
+export { mat3, imMat3} from "./mat3";
+export { mat4, imMat4} from "./mat4";
+export { quat, imQuat} from "./quat";
+export { vec2, imVec2} from "./vec2";
+export { vec3, imVec3} from "./vec3";
+export { vec4, imVec4} from "./vec4";

@@ -19,7 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 import * as glMatrix from "./common";
-import { imMat3, imMat4, imQuat } from "../gl-matrix";
+import { imMat3, imMat4, imQuat } from "./all";
 
 export type vec3 = glMatrix.vec3;
 export type imVec3 = glMatrix.imVec3;
@@ -37,7 +37,7 @@ export namespace vec3 {
  * @returns {vec3} a new 3D vector
  */
 export function create(): vec3 {
-  let out = new glMatrix.ARRAY_TYPE(3) as any as vec3;
+  const out = new glMatrix.ARRAY_TYPE(3) as any as vec3;
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -51,7 +51,7 @@ export function create(): vec3 {
  * @returns {vec3} a new 3D vector
  */
 export function clone(a: imVec3): vec3 {
-  var out = new glMatrix.ARRAY_TYPE(3) as any as vec3;
+  const out = new glMatrix.ARRAY_TYPE(3) as any as vec3;
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -65,10 +65,10 @@ export function clone(a: imVec3): vec3 {
  * @returns {Number} length of a
  */
 export function length(a: imVec3) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  return Math.sqrt(x*x + y*y + z*z);
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  return Math.sqrt(x * x + y * y + z * z);
 }
 
 /**
@@ -80,7 +80,7 @@ export function length(a: imVec3) {
  * @returns {vec3} a new 3D vector
  */
 export function fromValues(x: number, y: number, z: number) {
-  let out = new glMatrix.ARRAY_TYPE(3) as any as vec3;
+  const out = new glMatrix.ARRAY_TYPE(3) as any as vec3;
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -288,10 +288,10 @@ export function scaleAndAdd(out: vec3, a: imVec3, b: imVec3, scale: number) {
  * @returns {Number} distance between a and b
  */
 export function distance(a: imVec3, b: imVec3) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  return Math.sqrt(x*x + y*y + z*z);
+  const x = b[0] - a[0];
+  const y = b[1] - a[1];
+  const z = b[2] - a[2];
+  return Math.sqrt(x * x + y * y + z * z);
 }
 
 /**
@@ -302,10 +302,10 @@ export function distance(a: imVec3, b: imVec3) {
  * @returns {Number} squared distance between a and b
  */
 export function squaredDistance(a: imVec3, b: imVec3) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  return x*x + y*y + z*z;
+  const x = b[0] - a[0];
+  const y = b[1] - a[1];
+  const z = b[2] - a[2];
+  return x * x + y * y + z * z;
 }
 
 /**
@@ -315,10 +315,10 @@ export function squaredDistance(a: imVec3, b: imVec3) {
  * @returns {Number} squared length of a
  */
 export function squaredLength(a: imVec3) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  return x*x + y*y + z*z;
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  return x * x + y * y + z * z;
 }
 
 /**
@@ -357,10 +357,10 @@ export function inverse(out: vec3, a: imVec3): vec3  {
  * @returns {vec3} out
  */
 export function normalize(out: vec3, a: imVec3) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let len = x*x + y*y + z*z;
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  let len = x * x + y * y + z * z;
   if (len > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len = 1 / Math.sqrt(len);
@@ -391,8 +391,8 @@ export function dot(a: imVec3, b: imVec3) {
  * @returns {vec3} out
  */
 export function cross(out: vec3, a: imVec3, b: imVec3) {
-  let ax = a[0], ay = a[1], az = a[2];
-  let bx = b[0], by = b[1], bz = b[2];
+  const ax = a[0], ay = a[1], az = a[2];
+  const bx = b[0], by = b[1], bz = b[2];
 
   out[0] = ay * bz - az * by;
   out[1] = az * bx - ax * bz;
@@ -410,9 +410,9 @@ export function cross(out: vec3, a: imVec3, b: imVec3) {
  * @returns {vec3} out
  */
 export function lerp(out: vec3, a: imVec3, b: imVec3, t: number) {
-  let ax = a[0];
-  let ay = a[1];
-  let az = a[2];
+  const ax = a[0];
+  const ay = a[1];
+  const az = a[2];
   out[0] = ax + t * (b[0] - ax);
   out[1] = ay + t * (b[1] - ay);
   out[2] = az + t * (b[2] - az);
@@ -431,11 +431,11 @@ export function lerp(out: vec3, a: imVec3, b: imVec3, t: number) {
  * @returns {vec3} out
  */
 export function hermite(out: vec3, a: imVec3, b: imVec3, c: imVec3, d: imVec3, t: number) {
-  let factorTimes2 = t * t;
-  let factor1 = factorTimes2 * (2 * t - 3) + 1;
-  let factor2 = factorTimes2 * (t - 2) + t;
-  let factor3 = factorTimes2 * (t - 1);
-  let factor4 = factorTimes2 * (3 - 2 * t);
+  const factorTimes2 = t * t;
+  const factor1 = factorTimes2 * (2 * t - 3) + 1;
+  const factor2 = factorTimes2 * (t - 2) + t;
+  const factor3 = factorTimes2 * (t - 1);
+  const factor4 = factorTimes2 * (3 - 2 * t);
 
   out[0] = a[0] * factor1 + b[0] * factor2 + c[0] * factor3 + d[0] * factor4;
   out[1] = a[1] * factor1 + b[1] * factor2 + c[1] * factor3 + d[1] * factor4;
@@ -456,13 +456,13 @@ export function hermite(out: vec3, a: imVec3, b: imVec3, c: imVec3, d: imVec3, t
  * @returns {vec3} out
  */
 export function bezier(out: vec3, a: imVec3, b: imVec3, c: imVec3, d: imVec3, t: number) {
-  let inverseFactor = 1 - t;
-  let inverseFactorTimesTwo = inverseFactor * inverseFactor;
-  let factorTimes2 = t * t;
-  let factor1 = inverseFactorTimesTwo * inverseFactor;
-  let factor2 = 3 * t * inverseFactorTimesTwo;
-  let factor3 = 3 * factorTimes2 * inverseFactor;
-  let factor4 = factorTimes2 * t;
+  const inverseFactor = 1 - t;
+  const inverseFactorTimesTwo = inverseFactor * inverseFactor;
+  const factorTimes2 = t * t;
+  const factor1 = inverseFactorTimesTwo * inverseFactor;
+  const factor2 = 3 * t * inverseFactorTimesTwo;
+  const factor3 = 3 * factorTimes2 * inverseFactor;
+  const factor4 = factorTimes2 * t;
 
   out[0] = a[0] * factor1 + b[0] * factor2 + c[0] * factor3 + d[0] * factor4;
   out[1] = a[1] * factor1 + b[1] * factor2 + c[1] * factor3 + d[1] * factor4;
@@ -481,9 +481,9 @@ export function bezier(out: vec3, a: imVec3, b: imVec3, c: imVec3, d: imVec3, t:
 export function random(out: vec3, scale: number) {
   scale = scale || 1.0;
 
-  let r = glMatrix.RANDOM() * 2.0 * Math.PI;
-  let z = (glMatrix.RANDOM() * 2.0) - 1.0;
-  let zScale = Math.sqrt(1.0-z*z) * scale;
+  const r = glMatrix.RANDOM() * 2.0 * Math.PI;
+  const z = (glMatrix.RANDOM() * 2.0) - 1.0;
+  const zScale = Math.sqrt(1.0 - z * z) * scale;
 
   out[0] = Math.cos(r) * zScale;
   out[1] = Math.sin(r) * zScale;
@@ -501,7 +501,7 @@ export function random(out: vec3, scale: number) {
  * @returns {vec3} out
  */
 export function transformMat4(out: vec3, a: imVec3, m: imMat4) {
-  let x = a[0], y = a[1], z = a[2];
+  const x = a[0], y = a[1], z = a[2];
   let w = m[3] * x + m[7] * y + m[11] * z + m[15];
   w = w || 1.0;
   out[0] = (m[0] * x + m[4] * y + m[8] * z + m[12]) / w;
@@ -519,7 +519,7 @@ export function transformMat4(out: vec3, a: imVec3, m: imMat4) {
  * @returns {vec3} out
  */
 export function transformMat3(out: vec3, a: imVec3, m: imMat3) {
-  let x = a[0], y = a[1], z = a[2];
+  const x = a[0], y = a[1], z = a[2];
   out[0] = x * m[0] + y * m[3] + z * m[6];
   out[1] = x * m[1] + y * m[4] + z * m[7];
   out[2] = x * m[2] + y * m[5] + z * m[8];
@@ -537,14 +537,14 @@ export function transformMat3(out: vec3, a: imVec3, m: imMat3) {
 export function transformQuat(out: vec3, a: imVec3, q: imQuat) {
   // benchmarks: http://jsperf.com/quaternion-transform-vec3-implementations
 
-  let x = a[0], y = a[1], z = a[2];
-  let qx = q[0], qy = q[1], qz = q[2], qw = q[3];
+  const x = a[0], y = a[1], z = a[2];
+  const qx = q[0], qy = q[1], qz = q[2], qw = q[3];
 
   // calculate quat * vec
-  let ix = qw * x + qy * z - qz * y;
-  let iy = qw * y + qz * x - qx * z;
-  let iz = qw * z + qx * y - qy * x;
-  let iw = -qx * x - qy * y - qz * z;
+  const ix = qw * x + qy * z - qz * y;
+  const iy = qw * y + qz * x - qx * z;
+  const iz = qw * z + qx * y - qy * x;
+  const iw = -qx * x - qy * y - qz * z;
 
   // calculate result * inverse quat
   out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
@@ -562,7 +562,7 @@ export function transformQuat(out: vec3, a: imVec3, q: imQuat) {
  * @returns {vec3} out
  */
 export function rotateX(out: vec3, a: imVec3, b: imVec3, c: number) {
-  let p = [], r=[];
+  const p = [], r = [];
   //Translate point to the origin
   p[0] = a[0] - b[0];
   p[1] = a[1] - b[1];
@@ -570,8 +570,8 @@ export function rotateX(out: vec3, a: imVec3, b: imVec3, c: number) {
 
   //perform rotation
   r[0] = p[0];
-  r[1] = p[1]*Math.cos(c) - p[2]*Math.sin(c);
-  r[2] = p[1]*Math.sin(c) + p[2]*Math.cos(c);
+  r[1] = p[1] * Math.cos(c) - p[2] * Math.sin(c);
+  r[2] = p[1] * Math.sin(c) + p[2] * Math.cos(c);
 
   //translate to correct position
   out[0] = r[0] + b[0];
@@ -590,16 +590,16 @@ export function rotateX(out: vec3, a: imVec3, b: imVec3, c: number) {
  * @returns {vec3} out
  */
 export function rotateY(out: vec3, a: imVec3, b: imVec3, c: number) {
-  let p = [], r=[];
+  const p = [], r = [];
   //Translate point to the origin
   p[0] = a[0] - b[0];
   p[1] = a[1] - b[1];
   p[2] = a[2] - b[2];
 
   //perform rotation
-  r[0] = p[2]*Math.sin(c) + p[0]*Math.cos(c);
+  r[0] = p[2] * Math.sin(c) + p[0] * Math.cos(c);
   r[1] = p[1];
-  r[2] = p[2]*Math.cos(c) - p[0]*Math.sin(c);
+  r[2] = p[2] * Math.cos(c) - p[0] * Math.sin(c);
 
   //translate to correct position
   out[0] = r[0] + b[0];
@@ -618,15 +618,15 @@ export function rotateY(out: vec3, a: imVec3, b: imVec3, c: number) {
  * @returns {vec3} out
  */
 export function rotateZ(out: vec3, a: imVec3, b: imVec3, c: number) {
-  let p = [], r=[];
+  const p = [], r = [];
   //Translate point to the origin
   p[0] = a[0] - b[0];
   p[1] = a[1] - b[1];
   p[2] = a[2] - b[2];
 
   //perform rotation
-  r[0] = p[0]*Math.cos(c) - p[1]*Math.sin(c);
-  r[1] = p[0]*Math.sin(c) + p[1]*Math.cos(c);
+  r[0] = p[0] * Math.cos(c) - p[1] * Math.sin(c);
+  r[1] = p[0] * Math.sin(c) + p[1] * Math.cos(c);
   r[2] = p[2];
 
   //translate to correct position
@@ -644,18 +644,18 @@ export function rotateZ(out: vec3, a: imVec3, b: imVec3, c: number) {
  * @returns {Number} The angle in radians
  */
 export function angle(a: imVec3, b: imVec3) {
-  let tempA = fromValues(a[0], a[1], a[2]);
-  let tempB = fromValues(b[0], b[1], b[2]);
+  const tempA = fromValues(a[0], a[1], a[2]);
+  const tempB = fromValues(b[0], b[1], b[2]);
 
   normalize(tempA, tempA);
   normalize(tempB, tempB);
 
-  let cosine = dot(tempA, tempB);
+  const cosine = dot(tempA, tempB);
 
-  if(cosine > 1.0) {
+  if (cosine > 1.0) {
     return 0;
   }
-  else if(cosine < -1.0) {
+  else if (cosine < -1.0) {
     return Math.PI;
   } else {
     return Math.acos(cosine);
@@ -669,7 +669,7 @@ export function angle(a: imVec3, b: imVec3) {
  * @returns {String} string representation of the vector
  */
 export function str(a: imVec3) {
-  return 'vec3(' + a[0] + ', ' + a[1] + ', ' + a[2] + ')';
+  return "vec3(" + a[0] + ", " + a[1] + ", " + a[2] + ")";
 }
 
 /**
@@ -691,11 +691,11 @@ export function exactEquals(a: imVec3, b: imVec3) {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function equals(a: imVec3, b: imVec3) {
-  let a0 = a[0], a1 = a[1], a2 = a[2];
-  let b0 = b[0], b1 = b[1], b2 = b[2];
-  return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-          Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-          Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)));
+  const a0 = a[0], a1 = a[1], a2 = a[2];
+  const b0 = b[0], b1 = b[1], b2 = b[2];
+  return (Math.abs(a0 - b0) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+          Math.abs(a1 - b1) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+          Math.abs(a2 - b2) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)));
 }
 
 /**
@@ -753,28 +753,28 @@ export const sqrLen = squaredLength;
  * @function
  */
 export const forEach = (function() {
-  let vec = create();
+  const vec = create();
 
   return function(a: any, stride: number, offset: number, count: number, fn: any, arg: any) {
     let i, l;
-    if(!stride) {
+    if (!stride) {
       stride = 3;
     }
 
-    if(!offset) {
+    if (!offset) {
       offset = 0;
     }
 
-    if(count) {
+    if (count) {
       l = Math.min((count * stride) + offset, a.length);
     } else {
       l = a.length;
     }
 
-    for(i = offset; i < l; i += stride) {
-      vec[0] = a[i]; vec[1] = a[i+1]; vec[2] = a[i+2];
+    for (i = offset; i < l; i += stride) {
+      vec[0] = a[i]; vec[1] = a[i + 1]; vec[2] = a[i + 2];
       fn(vec, vec, arg);
-      a[i] = vec[0]; a[i+1] = vec[1]; a[i+2] = vec[2];
+      a[i] = vec[0]; a[i + 1] = vec[1]; a[i + 2] = vec[2];
     }
 
     return a;

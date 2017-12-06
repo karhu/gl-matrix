@@ -19,7 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 import * as glMatrix from "./common";
-import { imMat3, imMat4, vec3 } from "../gl-matrix";
+import { imMat2, imMat2d, imMat3, imMat4, vec3 } from "./all";
 
 export type vec2 = glMatrix.vec2;
 export type imVec2 = glMatrix.imVec2;
@@ -36,7 +36,7 @@ export namespace vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function create(): vec2 {
-  let out = new glMatrix.ARRAY_TYPE(2) as any as vec2;
+  const out = new glMatrix.ARRAY_TYPE(2) as any as vec2;
   out[0] = 0;
   out[1] = 0;
   return out;
@@ -49,7 +49,7 @@ export function create(): vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function clone(a: imVec2): vec2 {
-  let out = new glMatrix.ARRAY_TYPE(2) as any as vec2;
+  const out = new glMatrix.ARRAY_TYPE(2) as any as vec2;
   out[0] = a[0];
   out[1] = a[1];
   return out;
@@ -63,7 +63,7 @@ export function clone(a: imVec2): vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function fromValues(x: number, y: number): vec2 {
-  let out = new glMatrix.ARRAY_TYPE(2) as any as vec2;
+  const out = new glMatrix.ARRAY_TYPE(2) as any as vec2;
   out[0] = x;
   out[1] = y;
   return out;
@@ -136,7 +136,7 @@ export function multiply(out: vec2, a: imVec2, b: imVec2) {
   out[0] = a[0] * b[0];
   out[1] = a[1] * b[1];
   return out;
-};
+}
 
 /**
  * Divides two vec2's
@@ -150,7 +150,7 @@ export function divide(out: vec2, a: imVec2, b: imVec2) {
   out[0] = a[0] / b[0];
   out[1] = a[1] / b[1];
   return out;
-};
+}
 
 /**
  * Math.ceil the components of a vec2
@@ -163,7 +163,7 @@ export function ceil(out: vec2, a: imVec2) {
   out[0] = Math.ceil(a[0]);
   out[1] = Math.ceil(a[1]);
   return out;
-};
+}
 
 /**
  * Math.floor the components of a vec2
@@ -176,7 +176,7 @@ export function floor(out: vec2, a: imVec2) {
   out[0] = Math.floor(a[0]);
   out[1] = Math.floor(a[1]);
   return out;
-};
+}
 
 /**
  * Returns the minimum of two vec2's
@@ -190,7 +190,7 @@ export function min(out: vec2, a: imVec2, b: imVec2) {
   out[0] = Math.min(a[0], b[0]);
   out[1] = Math.min(a[1], b[1]);
   return out;
-};
+}
 
 /**
  * Returns the maximum of two vec2's
@@ -204,7 +204,7 @@ export function max(out: vec2, a: imVec2, b: imVec2) {
   out[0] = Math.max(a[0], b[0]);
   out[1] = Math.max(a[1], b[1]);
   return out;
-};
+}
 
 /**
  * Math.round the components of a vec2
@@ -217,7 +217,7 @@ export function round(out: vec2, a: imVec2) {
   out[0] = Math.round(a[0]);
   out[1] = Math.round(a[1]);
   return out;
-};
+}
 
 /**
  * Scales a vec2 by a scalar number
@@ -231,7 +231,7 @@ export function scale(out: vec2, a: imVec2, scale: number) {
   out[0] = a[0] * scale;
   out[1] = a[1] * scale;
   return out;
-};
+}
 
 /**
  * Adds two vec2's after scaling the second operand by a scalar value
@@ -246,7 +246,7 @@ export function scaleAndAdd(out: vec2, a: imVec2, b: imVec2, scale: number) {
   out[0] = a[0] + (b[0] * scale);
   out[1] = a[1] + (b[1] * scale);
   return out;
-};
+}
 
 /**
  * Calculates the euclidian distance between two vec2's
@@ -256,10 +256,10 @@ export function scaleAndAdd(out: vec2, a: imVec2, b: imVec2, scale: number) {
  * @returns {Number} distance between a and b
  */
 export function distance(a: imVec2, b: imVec2) {
-  var x = b[0] - a[0],
-    y = b[1] - a[1];
-  return Math.sqrt(x*x + y*y);
-};
+  const x = b[0] - a[0],
+        y = b[1] - a[1];
+  return Math.sqrt(x * x + y * y);
+}
 
 /**
  * Calculates the squared euclidian distance between two vec2's
@@ -269,10 +269,10 @@ export function distance(a: imVec2, b: imVec2) {
  * @returns {Number} squared distance between a and b
  */
 export function squaredDistance(a: imVec2, b: imVec2) {
-  var x = b[0] - a[0],
-    y = b[1] - a[1];
-  return x*x + y*y;
-};
+  const x = b[0] - a[0],
+        y = b[1] - a[1];
+  return x * x + y * y;
+}
 
 /**
  * Calculates the length of a vec2
@@ -281,10 +281,10 @@ export function squaredDistance(a: imVec2, b: imVec2) {
  * @returns {Number} length of a
  */
 export function length(a: imVec2) {
-  var x = a[0],
-    y = a[1];
-  return Math.sqrt(x*x + y*y);
-};
+  const x = a[0],
+        y = a[1];
+  return Math.sqrt(x * x + y * y);
+}
 
 /**
  * Calculates the squared length of a vec2
@@ -293,10 +293,10 @@ export function length(a: imVec2) {
  * @returns {Number} squared length of a
  */
 export function squaredLength(a: imVec2) {
-  var x = a[0],
-    y = a[1];
-  return x*x + y*y;
-};
+  const x = a[0],
+        y = a[1];
+  return x * x + y * y;
+}
 
 /**
  * Negates the components of a vec2
@@ -309,7 +309,7 @@ export function negate(out: vec2, a: imVec2) {
   out[0] = -a[0];
   out[1] = -a[1];
   return out;
-};
+}
 
 /**
  * Returns the inverse of the components of a vec2
@@ -322,7 +322,7 @@ export function inverse(out: vec2, a: imVec2) {
   out[0] = 1.0 / a[0];
   out[1] = 1.0 / a[1];
   return out;
-};
+}
 
 /**
  * Normalize a vec2
@@ -332,9 +332,9 @@ export function inverse(out: vec2, a: imVec2) {
  * @returns {vec2} out
  */
 export function normalize(out: vec2, a: imVec2) {
-  var x = a[0],
-    y = a[1];
-  var len = x*x + y*y;
+  const x = a[0],
+        y = a[1];
+  let len = x * x + y * y;
   if (len > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len = 1 / Math.sqrt(len);
@@ -342,7 +342,7 @@ export function normalize(out: vec2, a: imVec2) {
     out[1] = a[1] * len;
   }
   return out;
-};
+}
 
 /**
  * Calculates the dot product of two vec2's
@@ -353,7 +353,7 @@ export function normalize(out: vec2, a: imVec2) {
  */
 export function dot(a: imVec2, b: imVec2) {
   return a[0] * b[0] + a[1] * b[1];
-};
+}
 
 /**
  * Computes the cross product of two vec2's
@@ -365,11 +365,11 @@ export function dot(a: imVec2, b: imVec2) {
  * @returns {vec3} out
  */
 export function cross(out: vec3, a: imVec2, b: imVec2) {
-  var z = a[0] * b[1] - a[1] * b[0];
+  const z = a[0] * b[1] - a[1] * b[0];
   out[0] = out[1] = 0;
   out[2] = z;
   return out;
-};
+}
 
 /**
  * Performs a linear interpolation between two vec2's
@@ -381,12 +381,12 @@ export function cross(out: vec3, a: imVec2, b: imVec2) {
  * @returns {vec2} out
  */
 export function lerp(out: vec2, a: imVec2, b: imVec2, t: number) {
-  var ax = a[0],
+  const ax = a[0],
     ay = a[1];
   out[0] = ax + t * (b[0] - ax);
   out[1] = ay + t * (b[1] - ay);
   return out;
-};
+}
 
 /**
  * Generates a random vector with the given scale
@@ -396,11 +396,11 @@ export function lerp(out: vec2, a: imVec2, b: imVec2, t: number) {
  * @returns {vec2} out
  */
 export function random(out: vec2, scale = 1.0) {
-  var r = glMatrix.RANDOM() * 2.0 * Math.PI;
+  const r = glMatrix.RANDOM() * 2.0 * Math.PI;
   out[0] = Math.cos(r) * scale;
   out[1] = Math.sin(r) * scale;
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat2
@@ -410,13 +410,13 @@ export function random(out: vec2, scale = 1.0) {
  * @param {mat2} m matrix to transform with
  * @returns {vec2} out
  */
-export function transformMat2(out: vec2, a: imVec2, m: any) { // TODO ADRIAN
-  var x = a[0],
+export function transformMat2(out: vec2, a: imVec2, m: imMat2) {
+  const x = a[0],
     y = a[1];
   out[0] = m[0] * x + m[2] * y;
   out[1] = m[1] * x + m[3] * y;
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat2d
@@ -426,13 +426,13 @@ export function transformMat2(out: vec2, a: imVec2, m: any) { // TODO ADRIAN
  * @param {mat2d} m matrix to transform with
  * @returns {vec2} out
  */
-export function transformMat2d(out: vec2, a: imVec2, m: any) { // TODO ADRIAN
-  var x = a[0],
+export function transformMat2d(out: vec2, a: imVec2, m: imMat2d) {
+  const x = a[0],
     y = a[1];
   out[0] = m[0] * x + m[2] * y + m[4];
   out[1] = m[1] * x + m[3] * y + m[5];
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat3
@@ -444,12 +444,12 @@ export function transformMat2d(out: vec2, a: imVec2, m: any) { // TODO ADRIAN
  * @returns {vec2} out
  */
 export function transformMat3(out: vec2, a: imVec2, m: imMat3) {
-  var x = a[0],
+  const x = a[0],
     y = a[1];
   out[0] = m[0] * x + m[3] * y + m[6];
   out[1] = m[1] * x + m[4] * y + m[7];
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat4
@@ -462,8 +462,8 @@ export function transformMat3(out: vec2, a: imVec2, m: imMat3) {
  * @returns {vec2} out
  */
 export function transformMat4(out: vec2, a: imVec2, m: imMat4) {
-  let x = a[0];
-  let y = a[1];
+  const x = a[0];
+  const y = a[1];
   out[0] = m[0] * x + m[4] * y + m[12];
   out[1] = m[1] * x + m[5] * y + m[13];
   return out;
@@ -476,7 +476,7 @@ export function transformMat4(out: vec2, a: imVec2, m: imMat4) {
  * @returns {String} string representation of the vector
  */
 export function str(a: imVec2) {
-  return 'vec2(' + a[0] + ', ' + a[1] + ')';
+  return "vec2(" + a[0] + ", " + a[1] + ")";
 }
 
 /**
@@ -498,10 +498,10 @@ export function exactEquals(a: imVec2, b: imVec2) {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function equals(a: imVec2, b: imVec2) {
-  let a0 = a[0], a1 = a[1];
-  let b0 = b[0], b1 = b[1];
-  return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-          Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)));
+  const a0 = a[0], a1 = a[1];
+  const b0 = b[0], b1 = b[1];
+  return (Math.abs(a0 - b0) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+          Math.abs(a1 - b1) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)));
 }
 
 /**
@@ -559,28 +559,28 @@ export const sqrLen = squaredLength;
  * @function
  */
 export const forEach = (function() {
-  let vec = create();
+  const vec = create();
 
   return function(a: any, stride: number, offset: number, count: number, fn: any, arg: any) {
     let i, l;
-    if(!stride) {
+    if (!stride) {
       stride = 2;
     }
 
-    if(!offset) {
+    if (!offset) {
       offset = 0;
     }
 
-    if(count) {
+    if (count) {
       l = Math.min((count * stride) + offset, a.length);
     } else {
       l = a.length;
     }
 
-    for(i = offset; i < l; i += stride) {
-      vec[0] = a[i]; vec[1] = a[i+1];
+    for (i = offset; i < l; i += stride) {
+      vec[0] = a[i]; vec[1] = a[i + 1];
       fn(vec, vec, arg);
-      a[i] = vec[0]; a[i+1] = vec[1];
+      a[i] = vec[0]; a[i + 1] = vec[1];
     }
 
     return a;

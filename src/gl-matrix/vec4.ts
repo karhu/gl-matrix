@@ -38,7 +38,7 @@ export namespace vec4 {
  * @returns {vec4} a new 4D vector
  */
 export function create() {
-  let out = new glMatrix.ARRAY_TYPE(4) as any as vec4;
+  const out = new glMatrix.ARRAY_TYPE(4) as any as vec4;
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -53,7 +53,7 @@ export function create() {
  * @returns {vec4} a new 4D vector
  */
 export function clone(a: imVec4) {
-  let out = new glMatrix.ARRAY_TYPE(4) as any as vec4;
+  const out = new glMatrix.ARRAY_TYPE(4) as any as vec4;
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -71,7 +71,7 @@ export function clone(a: imVec4) {
  * @returns {vec4} a new 4D vector
  */
 export function fromValues(x: number, y: number, z: number, w: number) {
-  let out = new glMatrix.ARRAY_TYPE(4) as any as vec4;
+  const out = new glMatrix.ARRAY_TYPE(4) as any as vec4;
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -294,11 +294,11 @@ export function scaleAndAdd(out: vec4, a: imVec4, b: imVec4, scale: number) {
  * @returns {Number} distance between a and b
  */
 export function distance(a: imVec4, b: imVec4) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  let w = b[3] - a[3];
-  return Math.sqrt(x*x + y*y + z*z + w*w);
+  const x = b[0] - a[0];
+  const y = b[1] - a[1];
+  const z = b[2] - a[2];
+  const w = b[3] - a[3];
+  return Math.sqrt(x * x + y * y + z * z + w * w);
 }
 
 /**
@@ -309,11 +309,11 @@ export function distance(a: imVec4, b: imVec4) {
  * @returns {Number} squared distance between a and b
  */
 export function squaredDistance(a: imVec4, b: imVec4) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  let w = b[3] - a[3];
-  return x*x + y*y + z*z + w*w;
+  const x = b[0] - a[0];
+  const y = b[1] - a[1];
+  const z = b[2] - a[2];
+  const w = b[3] - a[3];
+  return x * x + y * y + z * z + w * w;
 }
 
 /**
@@ -323,11 +323,11 @@ export function squaredDistance(a: imVec4, b: imVec4) {
  * @returns {Number} length of a
  */
 export function length(a: imVec4) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let w = a[3];
-  return Math.sqrt(x*x + y*y + z*z + w*w);
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  const w = a[3];
+  return Math.sqrt(x * x + y * y + z * z + w * w);
 }
 
 /**
@@ -337,11 +337,11 @@ export function length(a: imVec4) {
  * @returns {Number} squared length of a
  */
 export function squaredLength(a: imVec4) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let w = a[3];
-  return x*x + y*y + z*z + w*w;
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  const w = a[3];
+  return x * x + y * y + z * z + w * w;
 }
 
 /**
@@ -382,11 +382,11 @@ export function inverse(out: vec4, a: imVec4) {
  * @returns {vec4} out
  */
 export function normalize(out: vec4, a: imVec4) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let w = a[3];
-  let len = x*x + y*y + z*z + w*w;
+  const x = a[0];
+  const y = a[1];
+  const z = a[2];
+  const w = a[3];
+  let len = x * x + y * y + z * z + w * w;
   if (len > 0) {
     len = 1 / Math.sqrt(len);
     out[0] = x * len;
@@ -418,10 +418,10 @@ export function dot(a: imVec4, b: imVec4) {
  * @returns {vec4} out
  */
 export function lerp(out: vec4, a: imVec4, b: imVec4, t: number) {
-  let ax = a[0];
-  let ay = a[1];
-  let az = a[2];
-  let aw = a[3];
+  const ax = a[0];
+  const ay = a[1];
+  const az = a[2];
+  const aw = a[3];
   out[0] = ax + t * (b[0] - ax);
   out[1] = ay + t * (b[1] - ay);
   out[2] = az + t * (b[2] - az);
@@ -456,7 +456,7 @@ export function random(out: vec4, vectorScale = 1.0) {
  * @returns {vec4} out
  */
 export function transformMat4(out: vec4, a: imVec4, m: mat4) {
-  let x = a[0], y = a[1], z = a[2], w = a[3];
+  const x = a[0], y = a[1], z = a[2], w = a[3];
   out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
   out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
   out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
@@ -473,14 +473,14 @@ export function transformMat4(out: vec4, a: imVec4, m: mat4) {
  * @returns {vec4} out
  */
 export function transformQuat(out: vec4, a: imVec4, q: imQuat) {
-  let x = a[0], y = a[1], z = a[2];
-  let qx = q[0], qy = q[1], qz = q[2], qw = q[3];
+  const x = a[0], y = a[1], z = a[2];
+  const qx = q[0], qy = q[1], qz = q[2], qw = q[3];
 
   // calculate quat * vec
-  let ix = qw * x + qy * z - qz * y;
-  let iy = qw * y + qz * x - qx * z;
-  let iz = qw * z + qx * y - qy * x;
-  let iw = -qx * x - qy * y - qz * z;
+  const ix = qw * x + qy * z - qz * y;
+  const iy = qw * y + qz * x - qx * z;
+  const iz = qw * z + qx * y - qy * x;
+  const iw = -qx * x - qy * y - qz * z;
 
   // calculate result * inverse quat
   out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
@@ -497,7 +497,7 @@ export function transformQuat(out: vec4, a: imVec4, q: imQuat) {
  * @returns {String} string representation of the vector
  */
 export function str(a: imVec4) {
-  return 'vec4(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
+  return "vec4(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
 }
 
 /**
@@ -519,12 +519,12 @@ export function exactEquals(a: imVec4, b: imVec4) {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function equals(a: imVec4, b: imVec4) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
-  return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-          Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-          Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
-          Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)));
+  const a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
+  const b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
+  return (Math.abs(a0 - b0) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+          Math.abs(a1 - b1) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+          Math.abs(a2 - b2) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+          Math.abs(a3 - b3) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)));
 }
 
 /**
@@ -582,28 +582,28 @@ export const sqrLen = squaredLength;
  * @function
  */
 export const forEach = (function() {
-  let vec = create();
+  const vec = create();
 
   return function(a: any, stride: number, offset: number, count: number, fn: any, arg: any) {
     let i, l;
-    if(!stride) {
+    if (!stride) {
       stride = 4;
     }
 
-    if(!offset) {
+    if (!offset) {
       offset = 0;
     }
 
-    if(count) {
+    if (count) {
       l = Math.min((count * stride) + offset, a.length);
     } else {
       l = a.length;
     }
 
-    for(i = offset; i < l; i += stride) {
-      vec[0] = a[i]; vec[1] = a[i+1]; vec[2] = a[i+2]; vec[3] = a[i+3];
+    for (i = offset; i < l; i += stride) {
+      vec[0] = a[i]; vec[1] = a[i + 1]; vec[2] = a[i + 2]; vec[3] = a[i + 3];
       fn(vec, vec, arg);
-      a[i] = vec[0]; a[i+1] = vec[1]; a[i+2] = vec[2]; a[i+3] = vec[3];
+      a[i] = vec[0]; a[i + 1] = vec[1]; a[i + 2] = vec[2]; a[i + 3] = vec[3];
     }
 
     return a;
