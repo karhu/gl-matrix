@@ -42,6 +42,7 @@ export type imMat2d = glMatrix.imMat2d;
  * </pre>
  * The last row is ignored so the array is shorter and operations are faster.
  */
+export namespace mat2d {
 
 /**
  * Creates a new identity mat2d
@@ -468,3 +469,5 @@ export const mul = multiply;
  * @function
  */
 export const sub = subtract;
+
+}

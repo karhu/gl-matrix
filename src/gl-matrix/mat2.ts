@@ -27,6 +27,7 @@ export type imMat2 = glMatrix.imMat2;
  * 2x2 Matrix
  * @module mat2
  */
+export namespace mat2 {
 
 /**
  * Creates a new identity mat2
@@ -434,3 +435,5 @@ export const mul = multiply;
  * @function
  */
 export const sub = subtract;
+
+}

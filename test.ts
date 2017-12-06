@@ -1,5 +1,5 @@
 
-import { vec3, imVec3, vec2, imVec2, quat, imQuat, mat4, imMat3 } from "./src/gl-matrix";
+import { vec3, imVec3, vec2, imVec2, quat, imQuat, mat4, imMat3, mat2d } from "./src/gl-matrix";
 
 const v0 = vec3.create();
 const iv0: imVec3 = vec3.create();
